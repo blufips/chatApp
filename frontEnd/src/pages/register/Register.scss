@@ -1,0 +1,80 @@
+@import '../../assets/Global.scss';
+
+.register {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $bodyColor;
+
+  &__form {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: $subColor;
+    border-radius: 2rem;
+    padding: 3rem 5rem;
+
+    @include desktop {
+      width: auto;
+    }
+
+    input {
+      font-size: 1rem;
+      color: $bodyColor;
+      background-color: inherit;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid $fontColor;
+    }
+  }
+
+  &__trademark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      color: $fontColor;
+      text-transform: uppercase;
+    }
+  }
+
+  &__button {
+    font-weight: 700;
+    background-color: $subbodyColor;
+    color: $subColor;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.5rem 0;
+    margin: 0.2rem 0;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $btnColor;
+      color: $bodyColor;
+    }
+  }
+
+  &__has-account {
+    color: $fontColor;
+    text-align: center;
+    text-transform: uppercase;
+
+    span {
+      text-decoration: none;
+      font-weight: 700;
+      color: $likeButtonColor;
+      transition: 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        color: $fontColor;
+      }
+    }
+  }
+}

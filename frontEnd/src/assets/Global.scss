@@ -1,0 +1,16 @@
+$mainColor: #14213d;
+$subColor: #090638;
+$fontColor: #eee;
+$subbodyColor: #fff;
+$bodyColor: #fff;
+$btnColor: #3363ff;
+$btnbgColor: #d8e0fd;
+$btnhoverColor: #c2cffc;
+$likeButtonColor: #ff9000;
+
+$desktopwidth: 80em;
+@mixin desktop {
+  @media (min-width: #{$desktopwidth}) {
+    @content;
+  }
+}

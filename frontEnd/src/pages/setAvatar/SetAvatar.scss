@@ -1,0 +1,82 @@
+@import '../../assets/Global.scss';
+
+.setavatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  height: 100vh;
+  width: 100vw;
+
+  &__title {
+    width: 80vw;
+    text-align: center;
+
+    @include desktop {
+      width: 100%;
+    }
+    h1 {
+      color: $mainColor;
+    }
+  }
+
+  &__images {
+    display: flex;
+    gap: 2rem;
+    width: 80vw;
+
+    @include desktop {
+      width: 100%;
+    }
+  }
+
+  &__avatar {
+    border: 0.2rem solid transparent;
+    padding: 0.2rem;
+    border-radius: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+
+    @include desktop {
+      border: 0.4rem solid transparent;
+      padding: 0.4rem;
+    }
+
+    img {
+      height: 2.5rem;
+
+      @include desktop {
+        height: 6rem;
+      }
+    }
+  }
+
+  .selected {
+    border: 0.4rem solid $mainColor;
+  }
+
+  &__submit-btn {
+    font-weight: 700;
+    background-color: $mainColor;
+    color: $fontColor;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
+    margin: 0.2rem 0;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $likeButtonColor;
+      color: $mainColor;
+    }
+  }
+
+  &__loading {
+    max-inline-size: 100%;
+  }
+}
