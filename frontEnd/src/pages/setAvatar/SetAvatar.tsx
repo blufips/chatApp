@@ -50,11 +50,16 @@ function SetAvatar() {
     const fetchData = async () => {
       const avatarData = [];
       for (let n = 0; n < 4; n++) {
-        const avatarImage = await axios.get(
-          `${avatarUrl}/${Math.round(Math.random() * 1000)}`
-        );
-        const buffer = Buffer.from(avatarImage.data, 'binary');
-        avatarData.push(buffer.toString('base64'));
+        const randomNumber = Math.round(Math.random() * 1000);
+        try {
+          const avatarImage = await axios.get(`${avatarUrl}/${randomNumber}`);
+          const buffer = Buffer.from(avatarImage.data, 'binary');
+          avatarData.push(buffer.toString('base64'));
+        } catch (ex) {
+          console.log(
+            `Failed to fetch avatars random number ${randomNumber}. Please retry`
+          );
+        }
       }
       setAvatars(avatarData);
       setIsLoading(false);
