@@ -1,0 +1,99 @@
+@import '../../assets/Global.scss';
+
+.contacts {
+  display: grid;
+  grid-template-rows: 10% 75% 15%;
+  overflow: hidden;
+  background-color: $subColor;
+
+  &__trademark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    h3 {
+      color: $fontColor;
+      text-transform: uppercase;
+    }
+  }
+
+  &__contact-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    gap: 0.8rem;
+    &::-webkit-scrollbar {
+      width: 0.2rem;
+      &-thumb {
+        background-color: $fgbodyColor;
+        width: 0.1rem;
+        border-radius: 1rem;
+      }
+    }
+
+    .contact {
+      background-color: $fgbodyColor;
+      min-height: 3rem;
+      width: 90%;
+      cursor: pointer;
+      border-radius: 0.2rem;
+      padding: 0.3rem 0 0.3rem 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      transition: 0.5s ease-in-out;
+
+      @include desktop {
+        min-height: 5rem;
+        padding: 0.4rem;
+      }
+
+      &__avatar {
+        img {
+          height: 2rem;
+
+          @include desktop {
+            height: 3rem;
+          }
+        }
+      }
+
+      &__username {
+        h3 {
+          color: $subColor;
+        }
+      }
+    }
+
+    .selected {
+      background-color: $btnColor;
+    }
+  }
+
+  .current-user {
+    background-color: $likeButtonColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    &__avatar {
+      img {
+        height: 3rem;
+        max-inline-size: 100%;
+
+        @include desktop {
+          height: 4rem;
+        }
+      }
+    }
+
+    &__username {
+      h2 {
+        color: $subColor;
+      }
+    }
+  }
+}

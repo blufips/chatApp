@@ -31,22 +31,32 @@ function SetAvatar() {
     if (selectedAvatar === null)
       toast.error('Please choose an avatar', toastError);
     else {
-      const user = await JSON.parse(localStorage.getItem('blufips-user') || '');
-      const { data } = await axios.post(`${setAvatarAPI}/${user._id}`, {
-        image: avatars[selectedAvatar],
-      });
-      if (data.isSet) {
-        user.isAvatarImageSet = true;
-        user.avatarImage = data.image;
-        localStorage.setItem('blufips-user', JSON.stringify(user));
-        navigate('/');
-      } else {
-        toast.error('Failed to set avatar. Please retry', toastError);
+      try {
+        const user = await JSON.parse(
+          localStorage.getItem('blufips-user') || ''
+        );
+        const { data } = await axios.post(`${setAvatarAPI}/${user._id}`, {
+          image: avatars[selectedAvatar],
+        });
+        if (data.isSet) {
+          user.isAvatarImageSet = true;
+          user.avatarImage = data.image;
+          localStorage.setItem('blufips-user', JSON.stringify(user));
+          navigate('/');
+        } else {
+          toast.error('Failed to set avatar. Please retry', toastError);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
     }
   };
 
   useEffect(() => {
+    if (!localStorage.getItem('blufips-user')) {
+      navigate('/login');
+    }
+
     const fetchData = async () => {
       const avatarData = [];
       for (let n = 0; n < 4; n++) {
@@ -64,9 +74,7 @@ function SetAvatar() {
       setAvatars(avatarData);
       setIsLoading(false);
     };
-    if (!localStorage.getItem('blufips-user')) {
-      navigate('/login');
-    }
+
     const debouncedFetchData = debounce(fetchData, 500);
 
     debouncedFetchData();

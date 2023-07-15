@@ -48,15 +48,19 @@ function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { data } = await axios.post(loginAPI, {
-      username,
-      password,
-    });
-    if (data.status === true) {
-      localStorage.setItem('blufips-user', JSON.stringify(data.user));
-      navigate('/');
-    } else {
-      toast.error(data.msg, toastError);
+    try {
+      const { data } = await axios.post(loginAPI, {
+        username,
+        password,
+      });
+      if (data.status === true) {
+        localStorage.setItem('blufips-user', JSON.stringify(data.user));
+        navigate('/');
+      } else {
+        toast.error(data.msg, toastError);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
   };
 

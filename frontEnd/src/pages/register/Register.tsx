@@ -70,16 +70,20 @@ function Register() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (handleValidation()) {
-      const { data } = await axios.post(registerAPI, {
-        username,
-        email,
-        password,
-      });
-      if (data.status === true) {
-        localStorage.setItem('blufips-user', JSON.stringify(data.user));
-        navigate('/');
-      } else {
-        toast.error(data.msg, toastError);
+      try {
+        const { data } = await axios.post(registerAPI, {
+          username,
+          email,
+          password,
+        });
+        if (data.status === true) {
+          localStorage.setItem('blufips-user', JSON.stringify(data.user));
+          navigate('/');
+        } else {
+          toast.error(data.msg, toastError);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
     }
   };

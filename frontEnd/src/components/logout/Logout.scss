@@ -1,0 +1,25 @@
+@import '../../assets/Global.scss';
+
+.logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pad: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: $btnColor;
+  border: none;
+  cursor: pointer;
+
+  svg {
+    font-size: 1.5rem;
+    color: $fontColor;
+
+    &:hover {
+      color: $likeButtonColor;
+    }
+
+    @include desktop {
+      font-size: 3rem;
+    }
+  }
+}

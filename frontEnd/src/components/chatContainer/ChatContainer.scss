@@ -1,0 +1,30 @@
+@import '../../assets/Global.scss';
+
+.chat-container {
+  padding-top: 1rem;
+
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+
+    &__user-details {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    &__avatar {
+      img {
+        height: 3rem;
+      }
+    }
+
+    &__username {
+      h3 {
+        color: $fontColor;
+      }
+    }
+  }
+}

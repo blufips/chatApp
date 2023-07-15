@@ -1,3 +1,10 @@
+type UserParams = {
+  _id: string;
+  username: string;
+  isAvatarImageSet: string;
+  avatarImage: string;
+};
+
 type UserDataParams = {
   username: string;
   email?: string;
@@ -5,4 +12,4 @@ type UserDataParams = {
   confirmpassword?: string;
 };
 
-export type { UserDataParams };
+export type { UserParams, UserDataParams };
