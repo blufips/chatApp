@@ -14,6 +14,7 @@ const getAllMessagesAPI = `${host}/api/messages/getmsg`;
 export {
   allUserAPI,
   getAllMessagesAPI,
+  host,
   loginAPI,
   registerAPI,
   setAvatarAPI,
