@@ -29,6 +29,17 @@ function Chat() {
 
   const handleChatChange = (chat: UserParams) => {
     setCurrentChat(chat);
+    setContacts((prevContacts) => {
+      return prevContacts.map((contact) => {
+        if (contact._id === chat._id) {
+          return {
+            ...contact,
+            hasUnreadMessages: false,
+          };
+        }
+        return contact;
+      });
+    });
   };
 
   useEffect(() => {
@@ -48,7 +59,13 @@ function Chat() {
       if (currentUser.isAvatarImageSet) {
         const fetchUser = async () => {
           const data = await axios.get(`${allUserAPI}/${currentUser._id}`);
-          setContacts(data.data);
+          const updatedContacts = data.data.map((contact: UserParams) => {
+            return {
+              ...contact,
+              hasUnreadMessages: false,
+            };
+          });
+          setContacts(updatedContacts);
         };
         fetchUser();
       } else {
@@ -71,6 +88,7 @@ function Chat() {
             currentChat={currentChat}
             currentUser={currentUser}
             socket={socket}
+            setContacts={setContacts}
           />
         )}
       </div>

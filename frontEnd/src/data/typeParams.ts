@@ -3,6 +3,7 @@ type UserParams = {
   username: string;
   isAvatarImageSet: string;
   avatarImage: string;
+  hasUnreadMessages: boolean; // New property
 };
 
 type UserDataParams = {

@@ -23,6 +23,7 @@ type ChatContainerParams = {
   currentChat: UserParams | null;
   currentUser: UserParams | null;
   socket: React.MutableRefObject<Socket<any, any> | null>;
+  setContacts: React.Dispatch<React.SetStateAction<UserParams[]>>;
 };
 
 type MessagesParam = {
@@ -35,6 +36,7 @@ function ChatContainer({
   currentChat,
   currentUser,
   socket,
+  setContacts,
 }: ChatContainerParams) {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [messages, setMessages] = useState<MessagesParam[]>([]);
@@ -78,6 +80,17 @@ function ChatContainer({
           fromSelf: false,
           message: data.msg,
           from: data.from,
+        });
+        setContacts((prevContacts) => {
+          return prevContacts.map((contact) => {
+            if (contact._id === data.from) {
+              return {
+                ...contact,
+                hasUnreadMessages: true,
+              };
+            }
+            return contact;
+          });
         });
       });
     }

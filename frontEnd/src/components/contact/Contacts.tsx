@@ -33,9 +33,12 @@ function Contacts({ contacts, currentUser, changeChat }: ContactParams) {
   const renderContactList = (
     <div className='contacts__contact-list'>
       {contacts.map((contact, index) => {
+        const contactClass = `contact ${
+          index === currentSelected ? 'selected' : ''
+        } ${contact.hasUnreadMessages ? 'has-unread-messages' : ''}`;
         return (
           <div
-            className={`contact ${index === currentSelected && 'selected'}`}
+            className={contactClass}
             key={index}
             onClick={() => changeCurrentChat(index, contact)}
           >
@@ -47,6 +50,9 @@ function Contacts({ contacts, currentUser, changeChat }: ContactParams) {
             </div>
             <div className='contact__username'>
               <h3>{contact.username}</h3>
+              {contact.hasUnreadMessages && (
+                <div className='notification-circle'></div>
+              )}
             </div>
           </div>
         );
