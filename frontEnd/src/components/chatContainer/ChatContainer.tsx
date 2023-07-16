@@ -28,6 +28,7 @@ type ChatContainerParams = {
 type MessagesParam = {
   fromSelf: boolean;
   message: string;
+  from?: string;
 };
 
 function ChatContainer({
@@ -72,14 +73,20 @@ function ChatContainer({
 
   useEffect(() => {
     if (socket.current) {
-      socket.current.on('msg-recieve', (msg: string) => {
-        setArrivedMessage({ fromSelf: false, message: msg });
+      socket.current.on('msg-recieve', (data: any) => {
+        setArrivedMessage({
+          fromSelf: false,
+          message: data.msg,
+          from: data.from,
+        });
       });
     }
-  }, []);
+  }, [currentChat]);
 
   useEffect(() => {
-    arrivedMessage && setMessages((prev) => [...prev, arrivedMessage]);
+    if (arrivedMessage && arrivedMessage.from === currentChat?._id) {
+      setMessages((prev) => [...prev, arrivedMessage]);
+    }
   }, [arrivedMessage]);
 
   useEffect(() => {
