@@ -1,0 +1,71 @@
+@import '../../assets/Global.scss';
+
+.chat-input {
+  display: grid;
+  grid-template-columns: 5% 95%;
+  align-items: center;
+  background-color: $mainColor;
+  padding: 0 2rem 1rem 2rem;
+
+  .button-container {
+    display: flex;
+    align-items: center;
+    color: $fontColor;
+    gap: 1rem;
+
+    &__emoji {
+      position: relative;
+
+      svg {
+        font-size: 2rem;
+        color: #ffff00c8;
+        cursor: pointer;
+      }
+
+      .EmojiPickerReact {
+        position: absolute;
+        top: -450px;
+      }
+    }
+  }
+
+  .input-container {
+    width: 100%;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background-color: $subColor;
+
+    input {
+      width: 90%;
+      height: 60%;
+      background-color: transparent;
+      color: $fontColor;
+      border: none;
+      padding-left: 1rem;
+      font-size: 1.2rem;
+      &::selection {
+        background-color: $fgbodyColor;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &__submit {
+      padding: 0.3rem 2rem;
+      border-radius: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $btnColor;
+      border: none;
+
+      svg {
+        font-size: 2rem;
+        color: $fontColor;
+      }
+    }
+  }
+}
